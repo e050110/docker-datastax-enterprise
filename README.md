@@ -28,11 +28,11 @@ Build both Docker images:
 
 Ops Center: 
 
-`docker build . -t dse-ops -f OpscDockerfile`
+`docker build -t dkanejs/dse-ops -f OpscDockerfile .`
 
 DSE: 
 
-`docker build . -t dse`
+`docker build -t dkanejs/dse .`
 
 ## Running Instructions
 The provided compose file will setup a single cassandra node with Solr, run the following command from the project root:
