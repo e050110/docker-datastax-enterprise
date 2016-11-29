@@ -1,0 +1,5 @@
+.idea
+*.iml
+datastax-agent_all.deb
+dse-bin.tar.gz
+opscenter.tar.gz

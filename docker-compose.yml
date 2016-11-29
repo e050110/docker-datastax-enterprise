@@ -1,0 +1,24 @@
+version: '2'
+services:
+  ops:
+    container_name: dse-ops
+    image: dkanejs/dse-ops
+    ports:
+      - '8888:8888'
+  dse:
+    container_name: dse
+    image: dkanejs/dse
+    volumes:
+      - /opt/docker/dse/data:/data
+      - /opt/docker/dse/logs:/logs
+    ports:
+      - '8983:8983'
+      - '9042:9042'
+    environment:
+      - CLUSTER_NAME=Docker
+      - STOMP_INTERFACE=ops
+    links:
+      - ops
+    depends_on:
+      - ops
+    command: -s
