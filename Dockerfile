@@ -23,7 +23,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     zlib1g \
     gzip \
     python \
-    python-support \
+    dh-python \
+    sudo \
     sysstat \
     ntp bash tree && \
     rm -rf /var/lib/apt/lists/*
