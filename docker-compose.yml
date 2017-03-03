@@ -9,8 +9,8 @@ services:
     container_name: dse
     image: dkanejs/dse
     volumes:
-      - /opt/docker/dse/data:/data
-      - /opt/docker/dse/logs:/logs
+      - dse-data:/data
+      - dse-data:/logs
     ports:
       - '8983:8983'
       - '9042:9042'
@@ -22,3 +22,6 @@ services:
     depends_on:
       - ops
     command: -s
+volumes:
+  dse-data:
+    driver: local

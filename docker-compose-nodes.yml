@@ -1,36 +1,33 @@
 version: '2'
 services:
   dse-ops:
-    container_name: dse-ops
     image: dkanejs/dse-ops
     ports:
       - '8888:8888'
+      - '8983:8983'
   dse-node-1:
-    container_name: dse-node-1
     image: dkanejs/dse
     command: -s
     volumes:
-      - /opt/docker/dse1/data:/data
-      - /opt/docker/dse1/logs:/logs
+      - dse-node-1-data:/data
+      - dse-node-1-data:/logs
     ports:
-      - '8983:8983'
       - '9042:9042'
     environment:
       - CLUSTER_NAME=Docker
       - STOMP_INTERFACE=dse-ops
-      - SEEDS=ddse-node-1,dse-node-2
+      - SEEDS=dse-node-1,dse-node-2
     links:
       - dse-ops
       - dse-node-2
     depends_on:
       - dse-ops
   dse-node-2:
-    container_name: dse-node-2
     image: dkanejs/dse
     command: -s
     volumes:
-      - /opt/docker/dse2/data:/data
-      - /opt/docker/dse2/logs:/logs
+      - dse-node-2-data:/data
+      - dse-node-2-data:/logs
     environment:
       - CLUSTER_NAME=Docker
       - STOMP_INTERFACE=dse-ops
@@ -39,3 +36,8 @@ services:
       - dse-ops
     depends_on:
       - dse-ops
+volumes:
+  dse-node-1-data:
+    driver: local
+  dse-node-2-data:
+    driver: local

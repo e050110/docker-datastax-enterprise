@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Provided without any warranty, these files are intended
 # to accompany the whitepaper about DSE on Docker and are 
